@@ -1,25 +1,51 @@
-
-<template>
+<template lang="html">
   <div>
-    <div v-for="a in authors" class="abc">
-      {{a.id}}
+    <h2>Home</h2>
+    <ul v-for="author in authors">
+      <app-author :author= "author" :key="author.id"></app-author>
+    </ul>
+
+    <div>
+      <h4>Create new Author</h4>
+      <div class="form-group">
+        <label for="author-name">Name</label>
+        <br>
+        <input type="text" v-model = "newAuthor.name" class="author-name">
+      </div>
+      <button @click= "createAuthor(newAuthor)" class="btn btn-primary">Create</button>
     </div>
+
   </div>
 </template>
+
 <script>
+import Author from './author/author.vue'
 import axios from 'axios'
+import {mapGetters, mapActions, mapState} from 'vuex'
+
 export default {
-  data: function(){
-    return {
-      authors: null
-    }
+  components: {
+    appAuthor: Author
   },
-  mounted () {
-    axios.get('api/v1/authors.json')
-      .then(
-        response => this.authors = response.data.data ,
-        error => console.log(error)
-      )
+  data: function() {
+    return {}
+  },
+  mounted() {
+    this.fetchAuthors()
+  },
+  computed: {
+    ...mapState('author', [
+      'authors',
+      'newAuthor'
+    ])
+  },
+  methods: {
+    ...mapActions('author',[
+      'fetchAuthors',
+      'createAuthor',
+      'updateAuthor',
+      'deleteAuthor'
+    ])
   }
 }
 </script>

@@ -3,4 +3,6 @@ Types::AuthorType = GraphQL::ObjectType.define do
 
   field :id, !types.ID
   field :name, !types.String
+  #get all Articles of authors
+  field :articles, types[Types::ArticleType]
 end
