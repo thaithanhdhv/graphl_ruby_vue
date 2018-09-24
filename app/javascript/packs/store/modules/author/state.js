@@ -1,6 +1,6 @@
 export default {
   authors: [],
   newAuthor:{
-    name: '',
+    name: ''
   }
 }
