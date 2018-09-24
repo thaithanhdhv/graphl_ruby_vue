@@ -2,7 +2,7 @@
   <div>
     <h2>Home</h2>
     <ul v-for="author in authors">
-      <app-author :author= "author" :key="author.id"></app-author>
+      <app-author :author= "author" :key="author.id" @delete-author = "deleteAuthor" @update-author = "updateAuthor" ></app-author>
     </ul>
 
     <div>

@@ -11,10 +11,9 @@ export default {
   [mutations.UPDATED_AUTHOR] (state, author) {
     let authorIndex = state.authors.findIndex(_author => _author.id === author.id)
     state.authors.splice(authorIndex, 1, author)
-    state.authors.unshift(author)
   },
   [mutations.DELETED_AUTHOR] (state, author) {
-    let authorIndex = state.authors.findIndex(_author => _author.id = author.id)
+    let authorIndex = state.authors.findIndex(_author => _author.id === author.id)
     state.authors.splice(authorIndex,1)
   }
 }
